@@ -1,9 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
 
 func main() {
-	secondLine := "2nd line"
-	fmt.Println("Hello world brother")
-	fmt.Println(secondLine)
+	res, error := http.Get("http://google.com")
+
+	if error != nil {
+		fmt.Println("Error ", error)
+		os.Exit(1)
+	}
+
+	fmt.Println("Success & code: ", res.StatusCode)
+	// fmt.Println("Success & code: ", res)
+
+	bs := make([]byte, 99999)
+	res.Body.Read(bs)
+	fmt.Println(string(bs))
+
 }
