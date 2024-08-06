@@ -1,9 +1,13 @@
 package main
 
-import "fmt"
+import (
+	handler "gotest/src/main/handler"
+	"log"
+	"net/http"
+)
 
 func main() {
-	secondLine := "2nd line"
-	fmt.Println("Hello world brother")
-	fmt.Println(secondLine)
+	http.HandleFunc("/", handler.HandleHomePage)
+	log.Println("Starting server ....")
+	http.ListenAndServe(":8080", nil)
 }
