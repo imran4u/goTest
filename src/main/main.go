@@ -26,5 +26,21 @@ func main() {
 
 	fmt.Println(mapObj)
 	fmt.Println(mapObj["gr"])
+	fmt.Println("-------------------------------------------------")
+	// switch case
+
+	var value string = "1"
+	switch value {
+	case "1":
+		fmt.Println("One")
+		fallthrough
+	case "2":
+		fmt.Println("Two")
+	case "3":
+		fmt.Println("Three")
+
+	default:
+		fmt.Println("Default")
+	}
 
 }
