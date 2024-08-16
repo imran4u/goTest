@@ -5,38 +5,49 @@ package main
 import "fmt"
 
 // Creating an interface
-type tank interface {
+type vehicle interface {
 
 	// Methods
-	Tarea() float64
-	Volume() float64
+	haveFourWheel() bool
+	highSpeed() bool // if speed more than 100
 }
 
-type myvalue struct {
-	radius float64
-	height float64
+type car struct {
+	fuelType string // petrol or desial
+}
+type bike struct {
+	color string
 }
 
-// Implementing methods of
-// the tank interface
-func (m myvalue) Tarea() float64 {
-
-	return 2*m.radius*m.height +
-		2*3.14*m.radius*m.radius
+func (c car) haveFourWheel() bool {
+	return true
+}
+func (c car) highSpeed() bool {
+	return true
 }
 
-func (m myvalue) Volume() float64 {
-
-	return 3.14 * m.radius * m.radius * m.height
+func (b bike) haveFourWheel() bool {
+	return false
+}
+func (b bike) highSpeed() bool {
+	return false
 }
 
 // Main Method
 func main() {
 
-	// Accessing elements of
-	// the tank interface
-	var t tank
-	t = myvalue{10, 14}
-	fmt.Println("Area of tank :", t.Tarea())
-	fmt.Println("Volume of tank:", t.Volume())
+	var v vehicle
+
+	v = car{fuelType: "petrol"}
+
+	fmt.Println("have four wheel :", v.haveFourWheel())
+	fmt.Println("high speed:", v.highSpeed())
+	fmt.Println(v)
+
+	v = bike{color: "red"}
+
+	fmt.Println("have four wheel :", v.haveFourWheel())
+	fmt.Println("high speed:", v.highSpeed())
+	fmt.Println(v)
+
 }
