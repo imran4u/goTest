@@ -1,8 +1,8 @@
 package main
 
 type Car struct {
-	TopSpeed   int
-	Name       string
-	Cool       bool
-	Passengers []string
+	TopSpeed   int      `yaml:"topspeed"` // top speed in miles per hour
+	Name       string   `yaml:"name"`
+	Cool       bool     `yaml:"cool"`
+	Passengers []string `yaml:"passengers"`
 }
