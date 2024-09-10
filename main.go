@@ -5,5 +5,16 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	car := Car{
+		TopSpeed: 10,
+		Name:     "Chevy",
+		Cool:     true,
+		Passengers: []string{
+			"imran",
+			"ali",
+			"farooq",
+			"waleed",
+		},
+	}
+	fmt.Println(car)
 }
