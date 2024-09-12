@@ -1,28 +1,34 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 
 	"gopkg.in/yaml.v3"
 )
 
 func main() {
-	car := Car{
-		TopSpeed: 10,
-		Name:     "Chevy",
-		Cool:     true,
-		Passengers: []string{
-			"imran",
-			"ali",
-			"farooq",
-			"waleed",
-		},
+
+	file, err := os.ReadFile("yaml/hello.yaml")
+	if err != nil {
+		log.Fatal("file not found", err)
 	}
 
-	out, err := yaml.Marshal(car) // convert struct to yaml
-	if err != nil {
+	// Create an empty Car to be are target of unmarshalling
+	var car Car
+
+	// Unmarshal our input YAML file into empty Car (var c)
+	if err := yaml.Unmarshal(file, &car); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(out)) // print yaml (out)
+	fmt.Printf("%+v\n", car)
+	fmt.Println("\n ------------json formate ---------------")
+	// convert to json
+	jsonBytes, err := json.Marshal(car)
+	if err != nil {
+		log.Fatal("Error converting to json", err)
+	}
+	fmt.Println(string(jsonBytes))
 }
