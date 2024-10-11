@@ -42,6 +42,22 @@ func (l *LinkedList) AddFromStart(value int) {
 	l.head = node
 }
 
+func (l *LinkedList) Delete(value int) {
+	if l.head == nil {
+		return
+	}
+	if l.head.value == value {
+		l.head = l.head.next
+		return
+	}
+	for iterator := l.head; iterator != nil; iterator = iterator.next {
+		if iterator.next.value == value {
+			iterator.next = iterator.next.next
+			return
+		}
+	}
+}
+
 func (l LinkedList) PrintVertically() {
 	node := l.head
 	for node != nil {
